@@ -3,10 +3,18 @@ package Catalogo;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Classe principale che gestisce l'interfaccia utente del catalogo bibliotecario.
+ * Permette di gestire libri e riviste attraverso un menu interattivo.
+ */
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
     private static Archivio archivio = new Archivio();
 
+    /**
+     * Metodo principale che avvia l'applicazione.
+     * Inizializza l'archivio con alcuni elementi di esempio e gestisce il menu principale.
+     */
     public static void main(String[] args) {
         inizializzaArchivio();
         
@@ -45,6 +53,9 @@ public class Main {
         }
     }
 
+    /**
+     * Visualizza il menu principale con tutte le opzioni disponibili.
+     */
     private static void mostraMenu() {
         System.out.println("\n=== GESTIONE CATALOGO ===");
         System.out.println("1. Aggiungi elemento");
@@ -56,6 +67,10 @@ public class Main {
         System.out.print("Scelta: ");
     }
 
+    /**
+     * Inizializza l'archivio con alcuni elementi di esempio.
+     * Aggiunge due libri e due riviste come dati iniziali.
+     */
     private static void inizializzaArchivio() {
         try {
             archivio.aggiungiElemento(new Libro("12345", "Il Signore degli Anelli", 1954, 1200, "J.R.R. Tolkien", "Fantasy"));
@@ -67,6 +82,10 @@ public class Main {
         }
     }
 
+    /**
+     * Gestisce l'aggiunta di un nuovo elemento al catalogo.
+     * Permette di aggiungere sia libri che riviste richiedendo i dati necessari.
+     */
     private static void aggiungiElemento() {
         System.out.println("Tipo di elemento (1=Libro, 2=Rivista): ");
         int tipo = Integer.parseInt(scanner.nextLine());
@@ -98,6 +117,9 @@ public class Main {
         }
     }
 
+    /**
+     * Cerca un elemento nel catalogo tramite il suo codice ISBN.
+     */
     private static void cercaPerISBN() {
         System.out.print("Inserisci ISBN da cercare: ");
         String isbn = scanner.nextLine();
@@ -109,6 +131,9 @@ public class Main {
         }
     }
 
+    /**
+     * Cerca elementi nel catalogo per anno di pubblicazione.
+     */
     private static void cercaPerAnno() {
         System.out.print("Inserisci anno da cercare: ");
         int anno = Integer.parseInt(scanner.nextLine());
@@ -120,6 +145,9 @@ public class Main {
         }
     }
 
+    /**
+     * Cerca libri nel catalogo per autore.
+     */
     private static void cercaPerAutore() {
         System.out.print("Inserisci autore da cercare: ");
         String autore = scanner.nextLine();
@@ -131,6 +159,10 @@ public class Main {
         }
     }
 
+    /**
+     * Gestisce l'aggiornamento di un elemento esistente nel catalogo.
+     * Identifica il tipo di elemento e chiama il metodo appropriato per l'aggiornamento.
+     */
     private static void aggiornaElemento() {
         System.out.print("Inserisci ISBN dell'elemento da aggiornare: ");
         String isbn = scanner.nextLine();
@@ -148,6 +180,10 @@ public class Main {
         }
     }
 
+    /**
+     * Aggiorna i dati di un libro esistente nel catalogo.
+     * @param isbn Il codice ISBN del libro da aggiornare
+     */
     private static void aggiornaLibro(String isbn) throws ElementoNonTrovatoException {
         System.out.println("Inserisci i nuovi dati:");
         System.out.print("Titolo: ");
@@ -166,6 +202,10 @@ public class Main {
         System.out.println("Libro aggiornato con successo!");
     }
 
+    /**
+     * Aggiorna i dati di una rivista esistente nel catalogo.
+     * @param isbn Il codice ISBN della rivista da aggiornare
+     */
     private static void aggiornaRivista(String isbn) throws ElementoNonTrovatoException {
         System.out.println("Inserisci i nuovi dati:");
         System.out.print("Titolo: ");
